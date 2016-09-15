@@ -1,0 +1,14 @@
+﻿<Window x:Class="Tango_Down.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tango_Down"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="700
+        ">
+    <Grid>
+        <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
+        <Label x:Name="lbl_servercount" Content="{Binding str_servercount}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,85,517,0" Height="30" Width="135"/>
+    </Grid>
+</Window>
