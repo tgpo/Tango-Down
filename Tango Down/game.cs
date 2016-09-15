@@ -9,11 +9,15 @@ namespace Tango_Down
 {
     class game : INotifyPropertyChanged
     {
-        int _int_servercount;
-        public int int_servercount
+        double _dbl_servercount;
+        public double dbl_servercount
         {
-            get { return _int_servercount; }
-            set { _int_servercount = value; OnPropertyChanged("int_servercount"); }
+            get { return _dbl_servercount; }
+            set {
+                _dbl_servercount = value;
+                str_servercount = value + " Servers Taken Down";
+                OnPropertyChanged("dbl_servercount");
+            }
         }
 
         string _str_servercount;
@@ -23,11 +27,11 @@ namespace Tango_Down
             set { _str_servercount = value; OnPropertyChanged("str_servercount"); }
         }
 
-        int _int_cps;
-        public int int_cps
+        double _dbl_cps;
+        public double dbl_cps
         {
-            get { return _int_cps; }
-            set { _int_cps = value; OnPropertyChanged("int_cps"); }
+            get { return _dbl_cps; }
+            set { _dbl_cps = value; OnPropertyChanged("dbl_cps"); }
         }
 
         protected virtual void OnPropertyChanged(string property)
@@ -40,9 +44,8 @@ namespace Tango_Down
 
         public game()
         {
-            int_servercount = 0;
-            str_servercount = int_servercount + " Servers Taken Down";
-            int_cps = 0;
+            dbl_servercount = 0;
+            dbl_cps = 0;
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Tango_Down
             set { _str_name = value; }
         }
 
-        int _int_clickspersecond;
-        public int int_clickspersecond
+        double _dbl_clickspersecond;
+        public double dbl_clickspersecond
         {
-            get { return _int_clickspersecond; }
-            set { _int_clickspersecond = value; }
+            get { return _dbl_clickspersecond; }
+            set { _dbl_clickspersecond = value; }
         }
 
         int _int_cost;

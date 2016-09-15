@@ -31,7 +31,7 @@ namespace Tango_Down
             lbl_cpscount.DataContext = thisgame;
 
             // Auto-Clicker Setup
-            cursor.int_clickspersecond = 1;
+            cursor.dbl_clickspersecond = .1;
             cursor.int_cost = 10;
 
             // Main Game Timer
@@ -42,23 +42,21 @@ namespace Tango_Down
         }
 
         private void gametimer(object source, ElapsedEventArgs e) {
-            thisgame.int_servercount += thisgame.int_cps;
-            thisgame.str_servercount = thisgame.int_servercount + " Servers Taken Down";
-
+            thisgame.dbl_servercount += thisgame.dbl_cps;
+            Console.WriteLine(thisgame.dbl_cps);
         }
 
         private void img_server_mousedown(object sender, MouseButtonEventArgs e)
         {
-            thisgame.int_servercount++;
-            thisgame.str_servercount = thisgame.int_servercount + " Servers Taken Down";
+            thisgame.dbl_servercount++;
         }
 
         private void img_autoclick_cursor_mousedown(object sender, MouseButtonEventArgs e)
         {
-            if (thisgame.int_servercount >= cursor.int_cost)
+            if (thisgame.dbl_servercount >= cursor.int_cost)
             {
-                thisgame.int_servercount -= cursor.int_cost;
-                thisgame.int_cps += cursor.int_clickspersecond;
+                thisgame.dbl_servercount -= cursor.int_cost;
+                thisgame.dbl_cps += cursor.dbl_clickspersecond;
             }
 
             

@@ -9,7 +9,7 @@
         ">
     <Grid>
         <Label x:Name="lbl_servercount" Content="{Binding str_servercount}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,43,507,0" Height="30" Width="145"/>
-        <Label x:Name="lbl_cpscount" Content="{Binding int_cps}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
+        <Label x:Name="lbl_cpscount" Content="{Binding dbl_cps}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
         <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
 
         <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="105" Source="resources/cursor.png" Margin="405,85,0,0" MouseDown="img_autoclick_cursor_mousedown" Cursor="Hand"/>
