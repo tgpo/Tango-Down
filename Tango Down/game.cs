@@ -23,6 +23,13 @@ namespace Tango_Down
             set { _str_servercount = value; OnPropertyChanged("str_servercount"); }
         }
 
+        int _int_cps;
+        public int int_cps
+        {
+            get { return _int_cps; }
+            set { _int_cps = value; OnPropertyChanged("int_cps"); }
+        }
+
         protected virtual void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -35,6 +42,7 @@ namespace Tango_Down
         {
             int_servercount = 0;
             str_servercount = int_servercount + " Servers Taken Down";
+            int_cps = 0;
         }
     }
 }
