@@ -31,35 +31,46 @@ namespace Tango_Down
             lbl_cpscount.DataContext = thisgame;
 
             // Auto-Clicker Setup
-            cursor.dbl_clickspersecond = .1;
-            cursor.int_cost = 10;
+            cursor.clickspersecond = .1;
+            cursor.cost = 10;
 
             // Main Game Timer
-            var myTimer = new System.Timers.Timer();
-            myTimer.Elapsed += new ElapsedEventHandler(gametimer);
-            myTimer.Interval = 1000;
-            myTimer.Enabled = true;
+            var gametimer = new System.Timers.Timer();
+            gametimer.Elapsed += new ElapsedEventHandler(coregameadvance);
+            gametimer.Interval = 1000;
+            gametimer.Enabled = true;
         }
 
-        private void gametimer(object source, ElapsedEventArgs e) {
-            thisgame.dbl_servercount += thisgame.dbl_cps;
-            Console.WriteLine(thisgame.dbl_cps);
+
+        // Core game advance method
+        // Gets called every second by the gametimer
+        private void coregameadvance(object source, ElapsedEventArgs e)
+        {
+            thisgame.servercount += thisgame.clickspersecond;
         }
 
+
+        // Click on Server Image
         private void img_server_mousedown(object sender, MouseButtonEventArgs e)
         {
-            thisgame.dbl_servercount++;
+            thisgame.servercount++;
         }
 
+
+        // Click on Autoclick: Cursor
         private void img_autoclick_cursor_mousedown(object sender, MouseButtonEventArgs e)
         {
-            if (thisgame.dbl_servercount >= cursor.int_cost)
+            if (thisgame.servercount >= cursor.cost)
             {
-                thisgame.dbl_servercount -= cursor.int_cost;
-                thisgame.dbl_cps += cursor.dbl_clickspersecond;
+                thisgame.servercount -= cursor.cost;
+                thisgame.clickspersecond += cursor.clickspersecond;
+
+                // Round numbers to 3 decimal points
+                thisgame.servercount = Math.Round(thisgame.servercount, 3, MidpointRounding.AwayFromZero);
+                thisgame.clickspersecond = Math.Round(thisgame.clickspersecond, 3, MidpointRounding.AwayFromZero);
             }
 
-            
+
         }
     }
 }

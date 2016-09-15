@@ -8,24 +8,24 @@ namespace Tango_Down
 {
     class autoclicker
     {
-        string _str_name;
-        public string str_name{
-            get { return _str_name; }
-            set { _str_name = value; }
+        string _name;
+        public string name{
+            get { return _name; }
+            set { _name = value; }
         }
 
-        double _dbl_clickspersecond;
-        public double dbl_clickspersecond
+        double _clickspersecond;
+        public double clickspersecond
         {
-            get { return _dbl_clickspersecond; }
-            set { _dbl_clickspersecond = value; }
+            get { return _clickspersecond; }
+            set { _clickspersecond = value; }
         }
 
-        int _int_cost;
-        public int int_cost
+        int _cost;
+        public int cost
         {
-            get { return _int_cost; }
-            set { _int_cost = value; }
+            get { return _cost; }
+            set { _cost = value; }
         }
 
     }
