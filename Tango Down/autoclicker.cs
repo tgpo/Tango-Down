@@ -18,7 +18,7 @@ namespace Tango_Down
         public double clickspersecond
         {
             get { return _clickspersecond; }
-            set { _clickspersecond = value; }
+            set { _clickspersecond = Math.Round(value, 1, MidpointRounding.AwayFromZero); }
         }
 
         int _cost;

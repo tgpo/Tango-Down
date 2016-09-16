@@ -65,9 +65,6 @@ namespace Tango_Down
                 thisgame.servercount -= cursor.cost;
                 thisgame.clickspersecond += cursor.clickspersecond;
 
-                // Round numbers to 3 decimal points
-                thisgame.servercount = Math.Round(thisgame.servercount, 3, MidpointRounding.AwayFromZero);
-                thisgame.clickspersecond = Math.Round(thisgame.clickspersecond, 3, MidpointRounding.AwayFromZero);
             }
 
 

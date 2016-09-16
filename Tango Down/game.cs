@@ -14,8 +14,8 @@ namespace Tango_Down
         {
             get { return _servercount; }
             set {
-                _servercount = value;
-                servercountstring = value + " Servers Taken Down";
+                _servercount = Math.Round(value, 3, MidpointRounding.AwayFromZero);
+                servercountstring = _servercount + " Servers Taken Down";
                 OnPropertyChanged("servercount");
             }
         }
@@ -31,7 +31,7 @@ namespace Tango_Down
         public double clickspersecond
         {
             get { return _clickspersecond; }
-            set { _clickspersecond = value; OnPropertyChanged("clickspersecond"); }
+            set { _clickspersecond = Math.Round(value, 1, MidpointRounding.AwayFromZero); OnPropertyChanged("clickspersecond"); }
         }
 
         protected virtual void OnPropertyChanged(string property)
