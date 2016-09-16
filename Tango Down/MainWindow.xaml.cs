@@ -29,10 +29,12 @@ namespace Tango_Down
             // Set Data Context for GUI
             lbl_servercount.DataContext = thisgame;
             lbl_cpscount.DataContext = thisgame;
+            lbl_cursorcount.DataContext = cursor;
+            lbl_cursorcost.DataContext = cursor;
 
             // Auto-Clicker Setup
             cursor.clickspersecond = .1;
-            cursor.cost = 10;
+            cursor.cost = 15;
 
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
@@ -62,8 +64,11 @@ namespace Tango_Down
         {
             if (thisgame.servercount >= cursor.cost)
             {
+                cursor.clickercount++;
                 thisgame.servercount -= cursor.cost;
                 thisgame.clickspersecond += cursor.clickspersecond;
+
+                cursor.cost = cursor.cost * 1.15;
 
             }
 
