@@ -63,9 +63,9 @@ namespace Tango_Down
         {
             Properties.Settings.Default.servercount = 0;
             Properties.Settings.Default.clickspersecond = 0;
-            Properties.Settings.Default.cursorcost = 0;
+            Properties.Settings.Default.cursorcost = cursor.basecost;
             Properties.Settings.Default.cursorcount = 0;
-            Properties.Settings.Default.ti83cost = 0;
+            Properties.Settings.Default.ti83cost = ti83.basecost;
             Properties.Settings.Default.ti83count = 0;
             Properties.Settings.Default.Save();
         }
