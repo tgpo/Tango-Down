@@ -23,6 +23,8 @@ namespace Tango_Down
         autoclicker cursor = new autoclicker();
         autoclicker ti83 = new autoclicker();
 
+        int autosaveinterval = 60;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,12 +35,69 @@ namespace Tango_Down
             // Auto-Clicker Setup
             setupautoclickers();
 
+            loadgame();
+
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
             gametimer.Elapsed += new ElapsedEventHandler(coregameadvance);
             gametimer.Interval = 1000;
             gametimer.Enabled = true;
         }
+
+
+        // Save game state to property settings
+        public void savegame()
+        {
+            Properties.Settings.Default.servercount = thisgame.servercount;
+            Properties.Settings.Default.clickspersecond = thisgame.clickspersecond;
+            Properties.Settings.Default.cursorcost = cursor.cost;
+            Properties.Settings.Default.cursorcount = cursor.clickercount;
+            Properties.Settings.Default.ti83cost = ti83.cost;
+            Properties.Settings.Default.ti83count = ti83.clickercount;
+            Properties.Settings.Default.Save();
+        }
+
+        // Save game state to property settings
+        public void resetgame()
+        {
+            Properties.Settings.Default.servercount = 0;
+            Properties.Settings.Default.clickspersecond = 0;
+            Properties.Settings.Default.cursorcost = 0;
+            Properties.Settings.Default.cursorcount = 0;
+            Properties.Settings.Default.ti83cost = 0;
+            Properties.Settings.Default.ti83count = 0;
+            Properties.Settings.Default.Save();
+        }
+
+
+        // Check if it's time to auto save the game
+        public void autosave()
+        {
+
+            if (autosaveinterval > 0)
+            {
+                autosaveinterval--;
+            }
+            else
+            {
+                savegame();
+                autosaveinterval = 60;
+            }
+
+        }
+
+
+        // Load game state from property settings
+        public void loadgame()
+        {
+            thisgame.servercount = Properties.Settings.Default.servercount;
+            thisgame.clickspersecond = Properties.Settings.Default.clickspersecond;
+            cursor.cost = Properties.Settings.Default.cursorcost;
+            cursor.clickercount = Properties.Settings.Default.cursorcount;
+            ti83.cost = Properties.Settings.Default.ti83cost;
+            ti83.clickercount = Properties.Settings.Default.ti83count;
+        }
+
 
         // Setup GUI Data Contexts for Binding
         private void setupguidatacontext()
@@ -52,6 +111,7 @@ namespace Tango_Down
             lbl_ti83count.DataContext = ti83;
             lbl_ti83cost.DataContext = ti83;
         }
+
 
         // Setup Autoclicker base data
         private void setupautoclickers()
@@ -71,8 +131,10 @@ namespace Tango_Down
         // Gets called every second by the gametimer
         private void coregameadvance(object source, ElapsedEventArgs e)
         {
+            autosave();
             thisgame.servercount += thisgame.clickspersecond;
         }
+
 
 
         // Click on Server Image
@@ -80,6 +142,7 @@ namespace Tango_Down
         {
             thisgame.servercount++;
         }
+
 
         // Click on Autoclick
         private void img_autoclick_mousedown(object sender, MouseButtonEventArgs e)

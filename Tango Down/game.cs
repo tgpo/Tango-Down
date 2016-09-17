@@ -9,6 +9,7 @@ namespace Tango_Down
 {
     class game : INotifyPropertyChanged
     {
+
         double _servercount;
         public double servercount
         {
