@@ -12,14 +12,19 @@
         <Label x:Name="lbl_cpscount" Content="{Binding clickspersecond}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
         <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
 
+        <Label x:Name="lbl_buy1" Content="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="510,4,152,0" Height="30" Tag="1" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
+        <Label x:Name="lbl_buy10" Content="10" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="552,4,117,0" Height="30" Tag="10" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
+        <Label x:Name="lbl_buy100" Content="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="582,4,77,0" Height="30" Tag="100" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
+
         <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="105" Source="resources/cursor.png" Margin="405,15,0,0" Tag="cursor"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
-        <Label x:Name="lbl_cursorcost" Content="{Binding cost}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="525,82,127,0" Height="30" Width="40"/>
+        <Label x:Name="lbl_cursorcost" Content="{Binding cost}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="525,82,67,0" Height="30" Width="100"/>
         <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" Margin="500,82,0,0" MouseDown="img_server_mousedown" Cursor="Hand" RenderTransformOrigin="0.5,0.5" />
         <Label x:Name="lbl_cursorcount" Content="{Binding clickercount}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,46,13,0" Height="62" FontSize="36"/>
-        
+
         <Image x:Name="img_autoclick_ti83" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="60" Source="resources/ti83.png" Margin="435,125,0,0" Tag="ti83"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
-        <Label x:Name="lbl_ti83cost" Content="{Binding cost}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="525,192,127,0" Height="30" Width="40"/>
+        <Label x:Name="lbl_ti83cost" Content="{Binding cost}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="525,192,67,0" Height="30" Width="100"/>
         <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" Margin="500,192,0,0" MouseDown="img_server_mousedown" Cursor="Hand" RenderTransformOrigin="0.5,0.5" />
         <Label x:Name="lbl_ti83count" Content="{Binding clickercount}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,156,13,0" Height="62" FontSize="36"/>
+
     </Grid>
 </Window>

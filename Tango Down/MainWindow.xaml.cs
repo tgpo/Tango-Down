@@ -35,7 +35,7 @@ namespace Tango_Down
             // Auto-Clicker Setup
             setupautoclickers();
 
-            loadgame();
+            resetgame();
 
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
@@ -56,6 +56,7 @@ namespace Tango_Down
             Properties.Settings.Default.ti83count = ti83.clickercount;
             Properties.Settings.Default.Save();
         }
+
 
         // Save game state to property settings
         public void resetgame()
@@ -118,12 +119,47 @@ namespace Tango_Down
         {
             cursor.clickspersecond = .1;
             cursor.cost = 15;
+            cursor.basecost = 15;
 
             ti83.clickspersecond = 1;
             ti83.cost = 100;
+            ti83.basecost = 100;
 
             thisgame.controls.Add("cursor", cursor);
             thisgame.controls.Add("ti83", ti83);
+        }
+
+
+        // Calculate cost based on base cost and # of clickers owned
+        private double recalculatecost(double cost, double clickercount)
+        {
+            double returnvalue = 0;
+
+            if (thisgame.buyfactor > 1)
+            {
+                for (int i = 0; i < (clickercount + thisgame.buyfactor); i++)
+                {
+                    cost = cost * 1.15;
+                    returnvalue += cost;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < clickercount; i++)
+                {
+                    cost *= 1.15;
+                }
+
+                returnvalue = cost;
+            }
+
+            return returnvalue;
+        }
+
+        private void recalculateallcosts()
+        {
+            cursor.cost = recalculatecost(cursor.basecost, cursor.clickercount);
+            ti83.cost = recalculatecost(ti83.basecost, ti83.clickercount);
         }
 
 
@@ -136,6 +172,7 @@ namespace Tango_Down
         }
 
 
+        #region Click Events
 
         // Click on Server Image
         private void img_server_mousedown(object sender, MouseButtonEventArgs e)
@@ -157,17 +194,28 @@ namespace Tango_Down
                 thisgame.servercount -= autoclickerclicked.cost;
 
                 // Increase clicker count
-                autoclickerclicked.clickercount++;
-                
+                autoclickerclicked.clickercount += thisgame.buyfactor;
+
                 // Increase CPS
-                thisgame.clickspersecond += autoclickerclicked.clickspersecond;
+                thisgame.clickspersecond += autoclickerclicked.clickspersecond * thisgame.buyfactor;
 
                 // Increase cost
-                autoclickerclicked.cost = autoclickerclicked.cost * 1.15;
+                autoclickerclicked.cost = recalculatecost(autoclickerclicked.basecost, autoclickerclicked.clickercount);
 
             }
 
-
         }
+
+
+        // Buy Factor Clicked
+        private void buyfactor_mousedown(object sender, MouseButtonEventArgs e)
+        {
+            // Read tag property to determine which buyfactor was clicked
+            thisgame.buyfactor = Int32.Parse((dynamic)((Label)sender).Tag);
+
+            recalculateallcosts();
+        }
+
+        #endregion
     }
 }

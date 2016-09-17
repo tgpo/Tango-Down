@@ -35,6 +35,13 @@ namespace Tango_Down
             set { _clickspersecond = Math.Round(value, 1, MidpointRounding.AwayFromZero); OnPropertyChanged("clickspersecond"); }
         }
 
+        int _buyfactor;
+        public int buyfactor
+        {
+            get { return _buyfactor; }
+            set { _buyfactor = value; }
+        }
+
         public Dictionary<string, Object> controls { get; set; }
 
         protected virtual void OnPropertyChanged(string property)
@@ -50,6 +57,7 @@ namespace Tango_Down
             controls = new Dictionary<string, Object>();
             servercount = 0;
             clickspersecond = 0;
+            buyfactor = 1;
         }
     }
 }

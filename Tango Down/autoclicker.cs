@@ -22,6 +22,13 @@ namespace Tango_Down
             set { _clickspersecond = Math.Round(value, 1, MidpointRounding.AwayFromZero); }
         }
 
+        double _basecost;
+        public double basecost
+        {
+            get { return _basecost; }
+            set { _basecost = Math.Ceiling(value); }
+        }
+
         double _cost;
         public double cost
         {
