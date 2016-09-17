@@ -36,6 +36,8 @@ namespace Tango_Down
             cursor.clickspersecond = .1;
             cursor.cost = 15;
 
+            thisgame.controls.Add("cursor",cursor);
+
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
             gametimer.Elapsed += new ElapsedEventHandler(coregameadvance);
@@ -58,17 +60,26 @@ namespace Tango_Down
             thisgame.servercount++;
         }
 
-
-        // Click on Autoclick: Cursor
-        private void img_autoclick_cursor_mousedown(object sender, MouseButtonEventArgs e)
+        // Click on Autoclick
+        private void img_autoclick_mousedown(object sender, MouseButtonEventArgs e)
         {
-            if (thisgame.servercount >= cursor.cost)
-            {
-                cursor.clickercount++;
-                thisgame.servercount -= cursor.cost;
-                thisgame.clickspersecond += cursor.clickspersecond;
+            // Read tag property to determine which autoclicker was clicked
+            // Find object with tag property value
+            var autoclickerclicked = thisgame.controls[(dynamic)((Image)sender).Tag];
 
-                cursor.cost = cursor.cost * 1.15;
+            if (thisgame.servercount >= autoclickerclicked.cost)
+            {
+                // Deduct cost. Gotta pay the man first.
+                thisgame.servercount -= autoclickerclicked.cost;
+
+                // Increase clicker count
+                autoclickerclicked.clickercount++;
+                
+                // Increase CPS
+                thisgame.clickspersecond += autoclickerclicked.clickspersecond;
+
+                // Increase cost
+                autoclickerclicked.cost = autoclickerclicked.cost * 1.15;
 
             }
 

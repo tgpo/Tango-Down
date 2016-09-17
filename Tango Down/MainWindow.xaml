@@ -12,7 +12,7 @@
         <Label x:Name="lbl_cpscount" Content="{Binding clickspersecond}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
         <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
 
-        <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="105" Source="resources/cursor.png" Margin="405,85,0,0" MouseDown="img_autoclick_cursor_mousedown" Cursor="Hand"/>
+        <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="105" Source="resources/cursor.png" Margin="405,85,0,0" Tag="cursor"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
         <Label x:Name="lbl_cursorcost" Content="{Binding cost}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="525,152,127,0" Height="30" Width="40"/>
         <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" Margin="500,152,0,0" MouseDown="img_server_mousedown" Cursor="Hand" RenderTransformOrigin="0.5,0.5" />
         <Label x:Name="lbl_cursorcount" Content="{Binding clickercount}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,116,13,0" Height="62" FontSize="36"/>

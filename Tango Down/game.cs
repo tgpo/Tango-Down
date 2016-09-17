@@ -34,6 +34,8 @@ namespace Tango_Down
             set { _clickspersecond = Math.Round(value, 1, MidpointRounding.AwayFromZero); OnPropertyChanged("clickspersecond"); }
         }
 
+        public Dictionary<string, Object> controls { get; set; }
+
         protected virtual void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -44,6 +46,7 @@ namespace Tango_Down
 
         public game()
         {
+            controls = new Dictionary<string, Object>();
             servercount = 0;
             clickspersecond = 0;
         }
