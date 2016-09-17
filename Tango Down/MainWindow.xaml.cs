@@ -21,28 +21,49 @@ namespace Tango_Down
     {
         game thisgame = new game();
         autoclicker cursor = new autoclicker();
+        autoclicker ti83 = new autoclicker();
 
         public MainWindow()
         {
             InitializeComponent();
 
             // Set Data Context for GUI
-            lbl_servercount.DataContext = thisgame;
-            lbl_cpscount.DataContext = thisgame;
-            lbl_cursorcount.DataContext = cursor;
-            lbl_cursorcost.DataContext = cursor;
+            setupguidatacontext();
 
             // Auto-Clicker Setup
-            cursor.clickspersecond = .1;
-            cursor.cost = 15;
-
-            thisgame.controls.Add("cursor",cursor);
+            setupautoclickers();
 
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
             gametimer.Elapsed += new ElapsedEventHandler(coregameadvance);
             gametimer.Interval = 1000;
             gametimer.Enabled = true;
+        }
+
+        // Setup GUI Data Contexts for Binding
+        private void setupguidatacontext()
+        {
+            lbl_servercount.DataContext = thisgame;
+            lbl_cpscount.DataContext = thisgame;
+
+            lbl_cursorcount.DataContext = cursor;
+            lbl_cursorcost.DataContext = cursor;
+
+            lbl_ti83count.DataContext = ti83;
+            lbl_ti83cost.DataContext = ti83;
+        }
+
+        // Setup Autoclicker base data
+        private void setupautoclickers()
+        {
+            cursor.clickspersecond = .1;
+            cursor.cost = 15;
+
+            ti83.clickspersecond = 1;
+            ti83.cost = 100;
+
+            thisgame.controls.Add("cursor", cursor);
+            thisgame.controls.Add("ti83", ti83);
         }
 
 
