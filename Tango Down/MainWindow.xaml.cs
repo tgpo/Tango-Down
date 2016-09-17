@@ -35,7 +35,7 @@ namespace Tango_Down
             // Auto-Clicker Setup
             setupautoclickers();
 
-            resetgame();
+            loadgame();
 
             // Main Game Timer
             var gametimer = new System.Timers.Timer();
