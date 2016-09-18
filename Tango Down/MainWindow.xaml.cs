@@ -68,6 +68,13 @@ namespace Tango_Down
             Properties.Settings.Default.ti83cost = ti83.basecost;
             Properties.Settings.Default.ti83count = 0;
             Properties.Settings.Default.Save();
+
+            thisgame.servercount = 0;
+            thisgame.clickspersecond = 0;
+            cursor.cost = cursor.basecost;
+            cursor.clickercount = 0;
+            ti83.cost = ti83.basecost;
+            ti83.clickercount = 0;
         }
 
 
@@ -105,6 +112,8 @@ namespace Tango_Down
         {
             lbl_servercount.DataContext = thisgame;
             lbl_cpscount.DataContext = thisgame;
+            lbl_cursorbuyfactor.DataContext = thisgame;
+            lbl_ti83buyfactor.DataContext = thisgame;
 
             lbl_cursorcount.DataContext = cursor;
             lbl_cursorcost.DataContext = cursor;
@@ -163,6 +172,20 @@ namespace Tango_Down
         }
 
 
+        private void setbuyfactorlabelvisibility()
+        {
+            if (thisgame.buyfactor > 1)
+            {
+                thisgame.buyfactorvisibility = Visibility.Visible;
+            }
+            else
+            {
+                thisgame.buyfactorvisibility = Visibility.Hidden;
+            }
+
+        }
+
+
         // Core game advance method
         // Gets called every second by the gametimer
         private void coregameadvance(object source, ElapsedEventArgs e)
@@ -214,6 +237,13 @@ namespace Tango_Down
             thisgame.buyfactor = Int32.Parse((dynamic)((Label)sender).Tag);
 
             recalculateallcosts();
+            setbuyfactorlabelvisibility();
+        }
+
+
+        private void lbl_resetgame_mousedown(object sender, MouseButtonEventArgs e)
+        {
+            resetgame();
         }
 
         #endregion

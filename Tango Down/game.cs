@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tango_Down
 {
@@ -39,7 +40,24 @@ namespace Tango_Down
         public int buyfactor
         {
             get { return _buyfactor; }
-            set { _buyfactor = value; }
+            set {
+                _buyfactor = value;
+                buyfactorxcount = "x" + _buyfactor;
+                OnPropertyChanged("buyfactor"); }
+        }
+
+        string _buyfactorxcount;
+        public string buyfactorxcount
+        {
+            get { return _buyfactorxcount; }
+            set { _buyfactorxcount = value; OnPropertyChanged("buyfactorxcount"); }
+        }
+
+        Visibility _buyfactorvisibility;
+        public Visibility buyfactorvisibility
+        {
+            get { return _buyfactorvisibility; }
+            set { _buyfactorvisibility = value; OnPropertyChanged("buyfactorvisibility"); }
         }
 
         public Dictionary<string, Object> controls { get; set; }
@@ -58,6 +76,7 @@ namespace Tango_Down
             servercount = 0;
             clickspersecond = 0;
             buyfactor = 1;
+            buyfactorvisibility = Visibility.Hidden;
         }
     }
 }
