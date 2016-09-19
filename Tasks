@@ -1,6 +1,13 @@
 Tasks or Ideas
 - If you are working on anything, please put your name by the item
 
+* Core Elements *
+- Beautify number displays. "1 million" instead of 1,000,000.
+- Show purchased clickers clicking on server
+- Show purchased autoclickers in a middle pane
+- Show autoclickers in scrollable right pane
+- Add upgrade functionality
+
 - Separate counter for the servers and for money
   - You get a certain amount of money for hacking a server and you spend that money on to buy upgrades
   
