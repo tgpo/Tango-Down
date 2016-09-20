@@ -42,6 +42,7 @@ namespace Tango_Down
             gametimer.Elapsed += new ElapsedEventHandler(coregameadvance);
             gametimer.Interval = 1000;
             gametimer.Enabled = true;
+
         }
 
 
@@ -139,6 +140,29 @@ namespace Tango_Down
         }
 
 
+        public static string formatnumber(double number)
+        {
+            string[] numberscales = { "", " million", " billion", " trillion", " quadrillion", " quintillion", " sextillion", " septillion", " octillion", " nonillion", " decillion", " undecillion", " duodecillion", " tredecillion", " quattuordecillion", " quindecillion" };
+
+            if (number >= 1000000 && !double.IsInfinity(number) && !double.IsNaN(number) )
+            {
+                int cnt = 0;
+
+                number /= 1000;
+                while (Math.Round(number) >= 1000)
+                {
+                    number /= 1000;
+                    cnt++;
+                }
+
+                string notationValue = numberscales[cnt];
+                return Math.Round((Math.Round(number * 1000) / 1000), 3) + notationValue;
+            }
+
+            return number.ToString();
+        }
+
+
         // Calculate cost based on base cost and # of clickers owned
         private double recalculatecost(double cost, double clickercount)
         {
@@ -165,6 +189,8 @@ namespace Tango_Down
             return returnvalue;
         }
 
+
+        // Recalculate costs for all autoclickers
         private void recalculateallcosts()
         {
             cursor.cost = recalculatecost(cursor.basecost, cursor.clickercount);
@@ -172,6 +198,7 @@ namespace Tango_Down
         }
 
 
+        // Hide / Show "10x" or "100x" beside autoclicker cost
         private void setbuyfactorlabelvisibility()
         {
             if (thisgame.buyfactor > 1)
@@ -241,6 +268,7 @@ namespace Tango_Down
         }
 
 
+        // Reset Game Clicked
         private void lbl_resetgame_mousedown(object sender, MouseButtonEventArgs e)
         {
             resetgame();

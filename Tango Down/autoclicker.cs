@@ -33,7 +33,18 @@ namespace Tango_Down
         public double cost
         {
             get { return _cost; }
-            set { _cost = Math.Ceiling(value); OnPropertyChanged("cost"); }
+            set {
+                _cost = Math.Ceiling(value);
+                formattedcost = MainWindow.formatnumber(_cost);
+                OnPropertyChanged("cost");
+            }
+        }
+
+        string _formattedcost;
+        public string formattedcost
+        {
+            get { return _formattedcost; }
+            set { _formattedcost = value; OnPropertyChanged("formattedcost"); }
         }
 
         double _clickercount;
@@ -50,11 +61,6 @@ namespace Tango_Down
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public autoclicker()
-        {
-
-        }
 
     }
 }
