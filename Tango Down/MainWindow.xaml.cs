@@ -101,10 +101,19 @@ namespace Tango_Down
         {
             thisgame.servercount = Properties.Settings.Default.servercount;
             thisgame.clickspersecond = Properties.Settings.Default.clickspersecond;
-            cursor.cost = Properties.Settings.Default.cursorcost;
             cursor.clickercount = Properties.Settings.Default.cursorcount;
-            ti83.cost = Properties.Settings.Default.ti83cost;
             ti83.clickercount = Properties.Settings.Default.ti83count;
+
+            if (Properties.Settings.Default.cursorcost > 0)
+            {
+                cursor.cost = Properties.Settings.Default.cursorcost;
+            }
+
+            if (Properties.Settings.Default.ti83cost > 0)
+            {
+                ti83.cost = Properties.Settings.Default.ti83cost;
+            }
+
         }
 
 
