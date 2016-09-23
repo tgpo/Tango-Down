@@ -23,6 +23,8 @@ namespace Tango_Down
         autoclicker cursor = new autoclicker();
         autoclicker ti83 = new autoclicker();
 
+        upgrade upgrade_cursor_1 = new upgrade("Cursor 1", 25, "cursor", .05);
+
         int autosaveinterval = 60;
 
         public MainWindow()
@@ -34,6 +36,9 @@ namespace Tango_Down
 
             // Auto-Clicker Setup
             setupautoclickers();
+
+            // Upgrade Setup
+            setupupgrades();
 
             loadgame();
 
@@ -62,7 +67,7 @@ namespace Tango_Down
         // Save game state to property settings
         public void resetgame()
         {
-            Properties.Settings.Default.servercount = 0;
+            Properties.Settings.Default.servercount = 50000000;
             Properties.Settings.Default.clickspersecond = 0;
             Properties.Settings.Default.cursorcost = cursor.basecost;
             Properties.Settings.Default.cursorcount = 0;
@@ -146,6 +151,34 @@ namespace Tango_Down
 
             thisgame.controls.Add("cursor", cursor);
             thisgame.controls.Add("ti83", ti83);
+        }
+
+
+        // Setup Upgrade base data
+        private void setupupgrades()
+        {
+            thisgame.upgrades.Add("upgrade_cursor_1", upgrade_cursor_1);
+        }
+
+        // Recalculate our Clicks Per Second
+        public void recalculatecps()
+        {
+            double clickspersecond = 0;
+
+            // Loop through all autoclickers
+            foreach (var item in thisgame.controls)
+            {
+                autoclicker thisclicker = (autoclicker)item.Value;
+
+                if(thisclicker.clickercount > 0)
+                {
+                    clickspersecond += thisclicker.clickspersecond * thisclicker.clickercount;
+                }
+            }
+
+            // Reset the game Clicker Per Second
+            thisgame.clickspersecond = clickspersecond;
+
         }
 
 
@@ -282,6 +315,34 @@ namespace Tango_Down
         {
             resetgame();
         }
+
+
+        // TODO: Make upgrade % cumulative.
+        // Upgrade Clicked
+        private void img_upgrade_mousedown(object sender, MouseButtonEventArgs e)
+        {
+            // Read tag property to determine which upgrade was clicked
+            upgrade thisupgrade = thisgame.upgrades[(dynamic)((Image)sender).Tag];
+
+            // Ensure user has enough money to purchase upgrade
+            if (thisgame.servercount >= thisupgrade.cost)
+            {
+
+                // Deduct cost
+                thisgame.servercount -= thisupgrade.cost;
+
+                // Determine which autoclicker to target
+                autoclicker autoclickertochange = (autoclicker)thisgame.controls[thisupgrade.autoclickertarget];
+
+                // Up the CPS for the autoclicker
+                autoclickertochange.clickspersecond += autoclickertochange.clickspersecond * thisupgrade.clickspersecondincrease;
+
+                // Recalculate the game's clicks per second
+                recalculatecps();
+            }
+
+        }
+       
 
         #endregion
     }

@@ -61,6 +61,7 @@ namespace Tango_Down
         }
 
         public Dictionary<string, Object> controls { get; set; }
+        public Dictionary<string, Object> upgrades { get; set; }
 
         protected virtual void OnPropertyChanged(string property)
         {
@@ -73,6 +74,7 @@ namespace Tango_Down
         public game()
         {
             controls = new Dictionary<string, Object>();
+            upgrades = new Dictionary<string, Object>();
             servercount = 0;
             clickspersecond = 0;
             buyfactor = 1;
