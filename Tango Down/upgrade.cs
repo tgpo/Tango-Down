@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tango_Down
 {
-    class upgrade
+    class upgrade : INotifyPropertyChanged
     {
         string _name;
         public string name
@@ -50,12 +52,36 @@ namespace Tango_Down
             set { _autoclickertarget = value; }
         }
 
-        public upgrade(string name, double cost, string target, double clickspersecondincrease)
+        Visibility _visibility;
+        public Visibility visibility
+        {
+            get { return _visibility; }
+            set { _visibility = value; OnPropertyChanged("visibility"); }
+        }
+
+        double _amounttounlock;
+        public double amounttounlock
+        {
+            get { return _amounttounlock; }
+            set { _amounttounlock = value; }
+        }
+
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public upgrade(string name, double cost, string target, double clickspersecondincrease, double amounttounlock)
         {
             this.name = name;
             this.cost = cost;
             this.autoclickertarget = target;
             this.clickspersecondincrease = clickspersecondincrease;
+            this.amounttounlock = amounttounlock;
+            this.visibility = Visibility.Hidden;
         }
     }
 }

@@ -12,7 +12,7 @@
         <Label x:Name="lbl_cpscount" Content="{Binding clickspersecond}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
         <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
 
-        <Image x:Name="img_autoclick_cursor_upgrade_1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="resources/red cursor.jpg" Margin="405,5,0,0" Tag="upgrade_cursor_1"  MouseDown="img_upgrade_mousedown" ToolTipService.InitialShowDelay="500" ToolTip="Upgrade Cursors to click 5% more per second" Cursor="Hand"/>
+        <Image x:Name="img_autoclick_cursor_upgrade_1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="resources/red cursor.jpg" Margin="405,5,0,0" Tag="cursor/upgrade_cursor_1"  MouseDown="img_upgrade_mousedown" ToolTipService.InitialShowDelay="500" ToolTip="Cursors click twice as fast" Visibility="{Binding visibility}" Cursor="Hand"/>
 
         <Label x:Name="lbl_buy1" Content="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="510,144,152,0" Height="30" Tag="1" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
         <Label x:Name="lbl_buy10" Content="10" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="548,144,114,0" Height="30" Tag="10" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>

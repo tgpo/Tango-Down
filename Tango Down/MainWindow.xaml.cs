@@ -23,7 +23,7 @@ namespace Tango_Down
         autoclicker cursor = new autoclicker();
         autoclicker ti83 = new autoclicker();
 
-        upgrade upgrade_cursor_1 = new upgrade("Cursor 1", 25, "cursor", .05);
+        upgrade upgrade_cursor_1 = new upgrade("Cursor 1", 25, "cursor", 2, 1);
 
         int autosaveinterval = 60;
 
@@ -31,14 +31,11 @@ namespace Tango_Down
         {
             InitializeComponent();
 
-            // Set Data Context for GUI
-            setupguidatacontext();
-
             // Auto-Clicker Setup
             setupautoclickers();
 
-            // Upgrade Setup
-            setupupgrades();
+            // Set Data Context for GUI
+            setupguidatacontext();
 
             loadgame();
 
@@ -132,6 +129,8 @@ namespace Tango_Down
 
             lbl_cursorcount.DataContext = cursor;
             lbl_cursorcost.DataContext = cursor;
+            img_autoclick_cursor_upgrade_1.DataContext = upgrade_cursor_1;
+            
 
             lbl_ti83count.DataContext = ti83;
             lbl_ti83cost.DataContext = ti83;
@@ -145,6 +144,8 @@ namespace Tango_Down
             cursor.cost = 15;
             cursor.basecost = 15;
 
+            cursor.upgrades.Add("upgrade_cursor_1", upgrade_cursor_1);
+
             ti83.clickspersecond = 1;
             ti83.cost = 100;
             ti83.basecost = 100;
@@ -153,12 +154,6 @@ namespace Tango_Down
             thisgame.controls.Add("ti83", ti83);
         }
 
-
-        // Setup Upgrade base data
-        private void setupupgrades()
-        {
-            thisgame.upgrades.Add("upgrade_cursor_1", upgrade_cursor_1);
-        }
 
         // Recalculate our Clicks Per Second
         public void recalculatecps()
@@ -294,6 +289,9 @@ namespace Tango_Down
                 // Increase cost
                 autoclickerclicked.cost = recalculatecost(autoclickerclicked.basecost, autoclickerclicked.clickercount);
 
+                // Check for Unlocked Upgrades
+                autoclickerclicked.unlockcheck();
+
             }
 
         }
@@ -314,6 +312,7 @@ namespace Tango_Down
         private void lbl_resetgame_mousedown(object sender, MouseButtonEventArgs e)
         {
             resetgame();
+
         }
 
 
@@ -321,21 +320,20 @@ namespace Tango_Down
         // Upgrade Clicked
         private void img_upgrade_mousedown(object sender, MouseButtonEventArgs e)
         {
-            // Read tag property to determine which upgrade was clicked
-            upgrade thisupgrade = thisgame.upgrades[(dynamic)((Image)sender).Tag];
+
+            string upgradetag = (dynamic)((Image)sender).Tag;
+            String[] upgradetagdata = upgradetag.Split('/');
+
+            autoclicker thisautoclicker = (autoclicker)thisgame.controls[upgradetagdata[0]];
+            upgrade thisupgrade = thisautoclicker.upgrades[upgradetagdata[1]];
+
 
             // Ensure user has enough money to purchase upgrade
             if (thisgame.servercount >= thisupgrade.cost)
             {
 
-                // Deduct cost
-                thisgame.servercount -= thisupgrade.cost;
-
-                // Determine which autoclicker to target
-                autoclicker autoclickertochange = (autoclicker)thisgame.controls[thisupgrade.autoclickertarget];
-
-                // Up the CPS for the autoclicker
-                autoclickertochange.clickspersecond += autoclickertochange.clickspersecond * thisupgrade.clickspersecondincrease;
+                // Apply Upgrade
+                thisautoclicker.apply(thisupgrade, thisgame);
 
                 // Recalculate the game's clicks per second
                 recalculatecps();

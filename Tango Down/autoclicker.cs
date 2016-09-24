@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Tango_Down
 {
@@ -54,6 +55,46 @@ namespace Tango_Down
             set { _clickercount = value; OnPropertyChanged("clickercount"); }
         }
 
+        Dictionary<string, upgrade> _upgrades;
+        public Dictionary<string, upgrade> upgrades {
+            get { return _upgrades; }
+            set { _upgrades = value; OnPropertyChanged("upgrades"); }
+        }
+
+        public void apply(upgrade thisupgrade, game thisgame)
+        {
+            // Deduct cost
+            thisgame.servercount -= thisupgrade.cost;
+
+            // Add to active upgrade list
+            thisgame.activeupgrades.Add(thisupgrade.name, thisupgrade);
+
+            // Up the CPS for the autoclicker
+            this.clickspersecond = this.clickspersecond * thisupgrade.clickspersecondincrease;
+
+            // Hide the upgrade
+            thisupgrade.visibility = Visibility.Hidden;
+        }
+
+        public void unlock(upgrade thisupgrade)
+        {
+            // Show the upgrade
+            thisupgrade.visibility = Visibility.Visible;
+        }
+
+        public void unlockcheck()
+        {
+            foreach (var item in upgrades)
+            {
+                upgrade thisupgrade = (upgrade)item.Value;
+
+                if (thisupgrade.amounttounlock <= clickercount)
+                {
+                    unlock(thisupgrade);
+                }
+            }
+        }
+
         protected virtual void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)
@@ -61,6 +102,12 @@ namespace Tango_Down
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public autoclicker()
+        {
+            upgrades = new Dictionary<string, upgrade>();
+           
+        }
 
     }
 }
