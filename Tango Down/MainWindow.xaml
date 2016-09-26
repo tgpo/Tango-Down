@@ -10,18 +10,19 @@
     <Grid>
         <Label x:Name="lbl_servercount" Content="{Binding servercountstring}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,43,507,0" Height="30" Width="145"/>
         <Label x:Name="lbl_cpscount" Content="{Binding clickspersecond}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="40,78,507,0" Height="30" Width="145"/>
-        <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/Server-desktop.jpg" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
+        <Image x:Name="img_server" HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="145" Source="resources/server.gif" Margin="40,120,0,0" MouseDown="img_server_mousedown" Cursor="Hand"/>
 
-        <Image x:Name="img_autoclick_cursor_upgrade_1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="resources/red cursor.jpg" Margin="405,5,0,0" Tag="cursor/upgrade_cursor_1"  MouseDown="img_upgrade_mousedown" ToolTipService.InitialShowDelay="500" ToolTip="Cursors click twice as fast" Visibility="{Binding visibility}" Cursor="Hand"/>
+        <Image x:Name="img_autoclick_cursor_upgrade_1" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="resources/upgrades/cursor/cursor-green.gif" Margin="405,5,0,0" Tag="cursor/upgrade_cursor_1"  MouseDown="img_upgrade_mousedown" ToolTipService.InitialShowDelay="500" ToolTip="Cursors click twice as fast" Visibility="{Binding visibility}" Cursor="Hand"/>
+        <Image x:Name="img_autoclick_cursor_upgrade_2" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="resources/upgrades/cursor/cursor-blue.gif" Margin="445,5,0,0" Tag="cursor/upgrade_cursor_2"  MouseDown="img_upgrade_mousedown" ToolTipService.InitialShowDelay="500" ToolTip="Cursors click twice as fast" Visibility="{Binding visibility}" Cursor="Hand"/>
 
         <Label x:Name="lbl_buy1" Content="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="510,144,152,0" Height="30" Tag="1" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
         <Label x:Name="lbl_buy10" Content="10" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="548,144,114,0" Height="30" Tag="10" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
         <Label x:Name="lbl_buy100" Content="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="584,144,78,0" Height="30" Tag="100" Cursor="Hand" Width="30" MouseDown="buyfactor_mousedown"/>
 
-        <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="105" Source="resources/cursor.png" Margin="405,155,0,0" Tag="cursor"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
+        <Image x:Name="img_autoclick_cursor" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="75" Source="resources/autoclickers/cursor.gif" Margin="426,164,0,0" Tag="cursor"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
         <DockPanel Height="30" Margin="500,207,10,232">
             <Label DockPanel.Dock="Left" x:Name="lbl_cursorbuyfactor" Content="{Binding buyfactorxcount}" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="{Binding buyfactorvisibility}" />
-            <Image DockPanel.Dock="Left" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" MouseDown="img_server_mousedown" Cursor="Hand" RenderTransformOrigin="0.5,0.5" />
+            <Image DockPanel.Dock="Left" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" RenderTransformOrigin="0.5,0.5" />
             <Label DockPanel.Dock="Left" x:Name="lbl_cursorcost" Content="{Binding formattedcost}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="78"/>
         </DockPanel>
         <Label x:Name="lbl_cursorcount" Content="{Binding clickercount}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,186,13,0" Height="62" FontSize="36"/>
@@ -30,7 +31,7 @@
         <Image x:Name="img_autoclick_ti83" HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="60" Source="resources/ti83.png" Margin="435,265,0,0" Tag="ti83"  MouseDown="img_autoclick_mousedown" Cursor="Hand"/>
         <DockPanel Height="30" Margin="500,331,10,108">
             <Label DockPanel.Dock="Left" x:Name="lbl_ti83buyfactor" Content="{Binding buyfactorxcount}" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="{Binding buyfactorvisibility}" />
-            <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" MouseDown="img_server_mousedown" Cursor="Hand" RenderTransformOrigin="0.5,0.5" />
+            <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="20" Source="resources/Server-desktop.jpg" RenderTransformOrigin="0.5,0.5" />
             <Label x:Name="lbl_ti83cost" Content="{Binding formattedcost}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100"/>
         </DockPanel>
         <Label x:Name="lbl_ti83count" Content="{Binding clickercount}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,296,13,0" Height="62" FontSize="36"/>

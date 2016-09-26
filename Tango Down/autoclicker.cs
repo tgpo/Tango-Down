@@ -80,6 +80,7 @@ namespace Tango_Down
         {
             // Show the upgrade
             thisupgrade.visibility = Visibility.Visible;
+            thisupgrade.purchased = true;
         }
 
         public void unlockcheck()
@@ -88,7 +89,7 @@ namespace Tango_Down
             {
                 upgrade thisupgrade = (upgrade)item.Value;
 
-                if (thisupgrade.amounttounlock <= clickercount)
+                if (thisupgrade.amounttounlock <= clickercount && !thisupgrade.purchased)
                 {
                     unlock(thisupgrade);
                 }

@@ -66,6 +66,13 @@ namespace Tango_Down
             set { _amounttounlock = value; }
         }
 
+        bool _purchased;
+        public bool purchased
+        {
+            get { return _purchased; }
+            set { _purchased = value; }
+        }
+
         protected virtual void OnPropertyChanged(string property)
         {
             if (PropertyChanged != null)

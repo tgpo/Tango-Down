@@ -17,7 +17,7 @@ namespace Tango_Down
             get { return _servercount; }
             set {
                 _servercount = Math.Round(value, 3, MidpointRounding.AwayFromZero);
-                servercountstring = _servercount + " Servers Taken Down";
+                servercountstring = MainWindow.formatnumber(_servercount) + " Servers Taken Down";
                 OnPropertyChanged("servercount");
             }
         }

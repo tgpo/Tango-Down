@@ -100,16 +100,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\cursor.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="resources\Server-desktop.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\ti83.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\red cursor.jpg" />
+    <Resource Include="resources\upgrades\cursor\cursor-blue.gif" />
+    <Resource Include="resources\upgrades\cursor\cursor-green.gif" />
+    <Resource Include="resources\upgrades\cursor\cursor-orange.gif" />
+    <Resource Include="resources\upgrades\cursor\cursor-purple.gif" />
+    <Resource Include="resources\upgrades\cursor\cursor-red.gif" />
+    <Resource Include="resources\upgrades\cursor\cursor-yellow.gif" />
+    <Resource Include="resources\autoclickers\cursor.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\server.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

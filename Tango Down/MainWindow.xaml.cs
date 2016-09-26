@@ -23,8 +23,6 @@ namespace Tango_Down
         autoclicker cursor = new autoclicker();
         autoclicker ti83 = new autoclicker();
 
-        upgrade upgrade_cursor_1 = new upgrade("Cursor 1", 25, "cursor", 2, 1);
-
         int autosaveinterval = 60;
 
         public MainWindow()
@@ -33,6 +31,9 @@ namespace Tango_Down
 
             // Auto-Clicker Setup
             setupautoclickers();
+
+            // Upgrades Setup
+            setupupgrades();
 
             // Set Data Context for GUI
             setupguidatacontext();
@@ -129,8 +130,9 @@ namespace Tango_Down
 
             lbl_cursorcount.DataContext = cursor;
             lbl_cursorcost.DataContext = cursor;
-            img_autoclick_cursor_upgrade_1.DataContext = upgrade_cursor_1;
-            
+            img_autoclick_cursor_upgrade_1.DataContext = cursor.upgrades["upgrade_cursor_1"];
+            img_autoclick_cursor_upgrade_2.DataContext = cursor.upgrades["upgrade_cursor_2"];
+
 
             lbl_ti83count.DataContext = ti83;
             lbl_ti83cost.DataContext = ti83;
@@ -144,14 +146,21 @@ namespace Tango_Down
             cursor.cost = 15;
             cursor.basecost = 15;
 
-            cursor.upgrades.Add("upgrade_cursor_1", upgrade_cursor_1);
-
             ti83.clickspersecond = 1;
             ti83.cost = 100;
             ti83.basecost = 100;
 
             thisgame.controls.Add("cursor", cursor);
             thisgame.controls.Add("ti83", ti83);
+        }
+
+
+        // Setup Upgrade base data
+        private void setupupgrades()
+        {
+            // Lookup Name, Upgrade Name, Cost, Autoclicker to apply to, CPS multiplyer, # needed to uplock
+            cursor.upgrades.Add("upgrade_cursor_1", new upgrade("upgrade_cursor_1", 25, "cursor", 2, 1));
+            cursor.upgrades.Add("upgrade_cursor_2", new upgrade("upgrade_cursor_2", 50, "cursor", 2, 10));
         }
 
 
