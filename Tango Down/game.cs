@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,8 +61,16 @@ namespace Tango_Down
             set { _buyfactorvisibility = value; OnPropertyChanged("buyfactorvisibility"); }
         }
 
+        ObservableCollection<upgrade> _unlockedupgrades;
+        public ObservableCollection<upgrade> unlockedupgrades
+        {
+            get { return _unlockedupgrades; }
+            set { _unlockedupgrades = value; OnPropertyChanged("unlockedupgrades"); }
+        }
+
         public Dictionary<string, Object> controls { get; set; }
         public Dictionary<string, Object> activeupgrades { get; set; }
+        
 
         protected virtual void OnPropertyChanged(string property)
         {
@@ -75,10 +84,10 @@ namespace Tango_Down
         {
             controls = new Dictionary<string, Object>();
             activeupgrades = new Dictionary<string, Object>();
+            unlockedupgrades = new ObservableCollection<upgrade>();
             servercount = 0;
             clickspersecond = 0;
             buyfactor = 1;
-            buyfactorvisibility = Visibility.Hidden;
         }
     }
 }

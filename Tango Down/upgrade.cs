@@ -52,13 +52,6 @@ namespace Tango_Down
             set { _autoclickertarget = value; }
         }
 
-        Visibility _visibility;
-        public Visibility visibility
-        {
-            get { return _visibility; }
-            set { _visibility = value; OnPropertyChanged("visibility"); }
-        }
-
         double _amounttounlock;
         public double amounttounlock
         {
@@ -66,11 +59,25 @@ namespace Tango_Down
             set { _amounttounlock = value; }
         }
 
-        bool _purchased;
-        public bool purchased
+        string _iconfile;
+        public string iconfile
         {
-            get { return _purchased; }
-            set { _purchased = value; }
+            get { return _iconfile; }
+            set { _iconfile = value; }
+        }
+
+        string _tag;
+        public string tag
+        {
+            get { return _tag; }
+            set { _tag = value; }
+        }
+
+        bool _unlocked;
+        public bool unlocked
+        {
+            get { return _unlocked; }
+            set { _unlocked = value; }
         }
 
         protected virtual void OnPropertyChanged(string property)
@@ -81,14 +88,17 @@ namespace Tango_Down
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public upgrade(string name, double cost, string target, double clickspersecondincrease, double amounttounlock)
+        public upgrade() { }
+
+        public upgrade(string name, double cost, string target, double clickspersecondincrease, double amounttounlock, string iconfile)
         {
             this.name = name;
             this.cost = cost;
             this.autoclickertarget = target;
             this.clickspersecondincrease = clickspersecondincrease;
             this.amounttounlock = amounttounlock;
-            this.visibility = Visibility.Hidden;
+            this.iconfile = iconfile;
+            this.tag = target + "/" + name;
         }
     }
 }

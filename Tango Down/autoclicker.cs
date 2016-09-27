@@ -73,25 +73,27 @@ namespace Tango_Down
             this.clickspersecond = this.clickspersecond * thisupgrade.clickspersecondincrease;
 
             // Hide the upgrade
-            thisupgrade.visibility = Visibility.Hidden;
+            thisgame.unlockedupgrades.Remove(thisupgrade);
+
         }
 
-        public void unlock(upgrade thisupgrade)
+        public void unlock(upgrade thisupgrade, game thisgame)
         {
             // Show the upgrade
-            thisupgrade.visibility = Visibility.Visible;
-            thisupgrade.purchased = true;
+            thisgame.unlockedupgrades.Add(thisupgrade);
+
+            thisupgrade.unlocked = true;
         }
 
-        public void unlockcheck()
+        public void unlockcheck(game thisgame)
         {
             foreach (var item in upgrades)
             {
                 upgrade thisupgrade = (upgrade)item.Value;
 
-                if (thisupgrade.amounttounlock <= clickercount && !thisupgrade.purchased)
+                if (thisupgrade.amounttounlock <= clickercount && !thisupgrade.unlocked)
                 {
-                    unlock(thisupgrade);
+                    unlock(thisupgrade, thisgame);
                 }
             }
         }

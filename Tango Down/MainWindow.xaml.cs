@@ -79,6 +79,7 @@ namespace Tango_Down
             cursor.clickercount = 0;
             ti83.cost = ti83.basecost;
             ti83.clickercount = 0;
+
         }
 
 
@@ -130,9 +131,8 @@ namespace Tango_Down
 
             lbl_cursorcount.DataContext = cursor;
             lbl_cursorcost.DataContext = cursor;
-            img_autoclick_cursor_upgrade_1.DataContext = cursor.upgrades["upgrade_cursor_1"];
-            img_autoclick_cursor_upgrade_2.DataContext = cursor.upgrades["upgrade_cursor_2"];
 
+            upgrades.ItemsSource = thisgame.unlockedupgrades;
 
             lbl_ti83count.DataContext = ti83;
             lbl_ti83cost.DataContext = ti83;
@@ -158,9 +158,10 @@ namespace Tango_Down
         // Setup Upgrade base data
         private void setupupgrades()
         {
-            // Lookup Name, Upgrade Name, Cost, Autoclicker to apply to, CPS multiplyer, # needed to uplock
-            cursor.upgrades.Add("upgrade_cursor_1", new upgrade("upgrade_cursor_1", 25, "cursor", 2, 1));
-            cursor.upgrades.Add("upgrade_cursor_2", new upgrade("upgrade_cursor_2", 50, "cursor", 2, 10));
+            // Lookup Name, Upgrade Name, Cost, Autoclicker to apply to, CPS multiplyer, # needed to uplock, iconfile
+            cursor.upgrades.Add("upgrade_cursor_1", new upgrade("upgrade_cursor_1", 25, "cursor", 2, 1, "/resources/upgrades/cursor/cursor-blue.gif"));
+            cursor.upgrades.Add("upgrade_cursor_2", new upgrade("upgrade_cursor_2", 50, "cursor", 2, 10, "/resources/upgrades/cursor/cursor-green.gif"));
+
         }
 
 
@@ -299,7 +300,7 @@ namespace Tango_Down
                 autoclickerclicked.cost = recalculatecost(autoclickerclicked.basecost, autoclickerclicked.clickercount);
 
                 // Check for Unlocked Upgrades
-                autoclickerclicked.unlockcheck();
+                autoclickerclicked.unlockcheck(thisgame);
 
             }
 
@@ -335,7 +336,6 @@ namespace Tango_Down
 
             autoclicker thisautoclicker = (autoclicker)thisgame.controls[upgradetagdata[0]];
             upgrade thisupgrade = thisautoclicker.upgrades[upgradetagdata[1]];
-
 
             // Ensure user has enough money to purchase upgrade
             if (thisgame.servercount >= thisupgrade.cost)
