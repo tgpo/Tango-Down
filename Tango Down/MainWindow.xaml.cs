@@ -161,6 +161,12 @@ namespace Tango_Down
             // Lookup Name, Upgrade Name, Cost, Autoclicker to apply to, CPS multiplyer, # needed to uplock, iconfile
             cursor.upgrades.Add("upgrade_cursor_1", new upgrade("upgrade_cursor_1", 25, "cursor", 2, 1, "/resources/upgrades/cursor/cursor-blue.gif"));
             cursor.upgrades.Add("upgrade_cursor_2", new upgrade("upgrade_cursor_2", 50, "cursor", 2, 10, "/resources/upgrades/cursor/cursor-green.gif"));
+            cursor.upgrades.Add("upgrade_cursor_3", new upgrade("upgrade_cursor_3", 25, "cursor", 2, 1, "/resources/upgrades/cursor/cursor-blue.gif"));
+            cursor.upgrades.Add("upgrade_cursor_4", new upgrade("upgrade_cursor_4", 50, "cursor", 2, 10, "/resources/upgrades/cursor/cursor-green.gif"));
+            cursor.upgrades.Add("upgrade_cursor_5", new upgrade("upgrade_cursor_5", 25, "cursor", 2, 1, "/resources/upgrades/cursor/cursor-blue.gif"));
+            cursor.upgrades.Add("upgrade_cursor_6", new upgrade("upgrade_cursor_6", 50, "cursor", 2, 10, "/resources/upgrades/cursor/cursor-green.gif"));
+            cursor.upgrades.Add("upgrade_cursor_7", new upgrade("upgrade_cursor_7", 25, "cursor", 2, 1, "/resources/upgrades/cursor/cursor-blue.gif"));
+            cursor.upgrades.Add("upgrade_cursor_8", new upgrade("upgrade_cursor_8", 50, "cursor", 2, 10, "/resources/upgrades/cursor/cursor-green.gif"));
 
         }
 
